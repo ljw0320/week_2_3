@@ -156,6 +156,10 @@ def is_palindrome(s):
             if (newS[i] != newS[newsLength-i-1]):                
                 return False            
         return True
+
+### 풀이 방법 3번 : recursion 사용
+# 반복되는 부분에 재귀
+# 반복되면 안되는 부분은 분리
         
 # 인사이트 
 # 문자열의 각 문자는 인덱스를 통해 접근 가능하다.
