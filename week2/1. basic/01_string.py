@@ -34,15 +34,14 @@
 # 핵심 문제점 : isalnum()을 사용하면 공백이나 특수문자가 있으면 False를 반환한다
 # 주어진 문제는 특수문자나 공백이 있다면 무시해야 한다.
 # 따라서 text.isalnum()을 바로 사용하지 않고 가공해야한다.
-## 아이디어 1 
-# 문자열의 길이와 같은 배열 생성
-# 생성된 배열에 인덱스마다 문자열의 문자를 하나씩 삽입한다.
+## 아이디어 
+# 문자열의 인덱스마다 문자열의 문자를 하나씩 검사한다.
 # 각 문자에 대해 isalnum()을 사용한다. 
 # True인 배열만 모아서 문자열을 생성한다.
 # 생성된 문자열이 회문인지 검사한다.
 
 # 사전 지식
-## 1. isalnum() 
+# 1. isalnum() #
 # python의 문자열 메서드.
 # 문자열이 오직 문자(알파벳, 한글 등)와 숫자로만 이루어져 있는지 검사.
 # 맞으면 True, 아니면 False 반환
@@ -71,7 +70,7 @@
 
 #     return True
 
-## 2. lower() 
+## 2. lower() ##
 # 문자열 안의 영문 대문자를 소문자로 바꿔서 새로운 문자열을 반환.
 # text = "Hello WORLD"
 # result = text.lower()
@@ -80,12 +79,10 @@
 # 숫자나 특수문자는 그대로 유지된다
 # 추가 정보 : upper() = 입력문자 대문자로 변환
 
-## 3. [::-1] 
+### 3. [::-1] ###
 # python의 슬라이싱 문법을 이용해서 문자열을 뒤집는 방식.
 # 기본형태 문자열[start:end:step]
-# start: 어디서 시작할지
-# end: 어디까지 갈지
-# step: 몇 칸씩 이동할지
+# start: 어디서 시작할지 end: 어디까지 갈지 step: 몇 칸씩 이동할지
 # text = "abcdef"
 # print(text[::1])
 # step = 1 이라서 왼쪽에서 오른쪽으로 한 칸 씩 읽는다.
@@ -107,35 +104,62 @@
 # test_is_palindrome("abcd")
 # test_is_palindrome("abcdcba")
  
-
-def is_palindrome(s):        
-    # 문자열에 특수문자가 없는 경우(문자열 길이가 0인 경우도 무시됨)
-    if (s.isalnum()):
-        s = s.lower()   # 문자열 소문자로 변환
-        if (s == s[::-1]) :
-            return True
-        else :
-            return False 
+# 풀이 방법 1번 : [::-1] 이용
+# def is_palindrome(s):        
+#     # 문자열에 특수문자가 없는 경우(문자열 길이가 0인 경우도 무시됨)
+#     if (s.isalnum()):
+#         s = s.lower()   # 문자열 소문자로 변환
+#         if (s == s[::-1]) :
+#             return True
+#         else :
+#             return False 
         
-    if not (s.isalnum()):       
-        if (len(s)) == 0: # 문자열 길이가 0이면 바로 False 반환
+#     if not (s.isalnum()):       
+#         if (len(s)) == 0: # 문자열 길이가 0이면 바로 False 반환
+#             return False
+#         else :             
+#             # 문자열의 문자를 하나씩 검사하여 True면 리스트에 넣고 아니면 무시
+#             newS = ""
+#             for char in s:
+#                 if (not char.isalnum()): 
+#                     continue;
+#                 else : 
+#                     newS +=char
+#             # 문자열 소문자로 변환
+#             newS = newS.lower()                                
+#             if (newS == newS[::-1]):
+#                 return True
+#             else :
+#                 return False
+
+## 풀이 방법 2번 : 양 끝 인덱스를 이용한 투 포인터 방식
+def is_palindrome(s):        
+    # 특수문자가 없는 경우
+    if (s.isalnum()) : 
+        sLength = len(s)
+        s = s.lower()        
+        for i in range(sLength) :
+            if (s[i] != s[sLength-i-1]):
+                return False            
+        return True
+    else : 
+        if (len(s) == 0) : # 빈 문자열
             return False
-        else :             
-            # 문자열의 문자를 하나씩 검사하여 True면 리스트에 넣고 아니면 무시
-            newS = ""
-            for char in s:
-                if (not char.isalnum()): 
-                    continue;
-                else : 
-                    newS +=char
-            # 문자열 소문자로 변환
-            newS = newS.lower()                                
-            if (newS == newS[::-1]):
-                return True
-            else :
-                return False
-
-
+        newS = ""
+        for char in s : # 문자열 추출
+            if (not char.isalnum()): # 문자가 알파벳, 숫자가 아닌경우 continue   
+                continue
+            newS += char
+        newS = newS.lower() # 문자열 소문자 변환
+        newsLength = len(newS)
+        for i in range(newsLength):
+            if (newS[i] != newS[newsLength-i-1]):                
+                return False            
+        return True
+        
+# 인사이트 
+# 문자열의 각 문자는 인덱스를 통해 접근 가능하다.
+# for문은 range를 사용하여 특정 숫자 범위를 지정할 수 있다.
 
     """
     문자열이 회문인지 판별하는 함수
