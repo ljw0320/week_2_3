@@ -4,7 +4,7 @@
 ▣ 문제 설명
 - 1, 2, ..., n 의 숫자 중에서 k 개를 골라 만들 수 있는 모든 "조합" 을 출력합니다.
 - 조합은 "순서 없이 어떤 것을 골랐는가" 만 따집니다.
-  예) [1, 2] 와 [2, 1] 은 같은 조합으로 봅니다.
+  예) [1, 2] 와 [2, 1] 은 같은 조합으로 봅니다.(중복 무시)
 
 ▣ 입력
 - n: 전체 숫자 개수 (1, 2, ..., n)
@@ -107,9 +107,7 @@ combinations(n, k) -> list[list[int]]
 ==============================================================================
 """
 
-
-def combinations(n: int, k: int) -> list:
-    """
+"""
     1 부터 n 까지 숫자 중 k 개를 선택하는 모든 조합을 반환합니다.
 
     Args:
@@ -118,7 +116,9 @@ def combinations(n: int, k: int) -> list:
 
     Returns:
         모든 조합을 담은 리스트(예: [[1,2], [1,3], ...])
-    """
+"""
+def combinations(n: int, k: int) -> list:
+    
     result = []  # 완성된 조합을 모아 둘 곳
 
     def backtrack(start: int, current_combination: list) -> None:
@@ -141,9 +141,9 @@ def combinations(n: int, k: int) -> list:
         # - 복사본 만드는 방법: list(current_combination)  또는 current_combination[:]
         #
         # TODO(Level 1): 아래 두 줄을 직접 작성하세요.
-        # if len(current_combination) == ...:
-        #     result.append(...)
-        #     return
+        if len(current_combination) == k:
+            result.append(list(current_combination))
+            return 
         pass  
 
         # ──────────────────────────────────────────────────────────────────
@@ -155,19 +155,20 @@ def combinations(n: int, k: int) -> list:
         #
         # TODO(Level 2): 아래 한 줄을 작성하세요.
         pass
+        for num in range(start,n+1):        
 
-            # ──────────────────────────────────────────────────────────────
-            # [Level 3] 백트래킹 3단계
-            # ──────────────────────────────────────────────────────────────
-            # 힌트:
-            #   1) 선택(Choose)  : current_combination 에 num 추가
-            #   2) 탐색(Explore) : backtrack(num + 1, current_combination)
-            #   3) 취소(Unchoose): current_combination 의 마지막 요소를 제거
-            #
-            # TODO(Level 3): 아래 세 줄을 작성하세요.
-            # current_combination.append(...)
-            # backtrack(..., current_combination)
-            # current_combination.pop()
+        # ──────────────────────────────────────────────────────────────
+        # [Level 3] 백트래킹 3단계
+        # ──────────────────────────────────────────────────────────────
+        # 힌트:
+        #   1) 선택(Choose)  : current_combination 에 num 추가
+        #   2) 탐색(Explore) : backtrack(num + 1, current_combination)
+        #   3) 취소(Unchoose): current_combination 의 마지막 요소를 제거
+        #
+        # TODO(Level 3): 아래 세 줄을 작성하세요.
+          current_combination.append(num)
+          backtrack(num + 1, current_combination)
+          current_combination.pop()
 
     # 처음 호출: 시작 숫자는 1, 지금까지 고른 숫자는 비어 있음
     backtrack(1, [])

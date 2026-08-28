@@ -72,40 +72,37 @@
 # 생성한 배열에 90도 회전한 원소 배치
 # 완료 후 배열 반환 
 
-def rotate_matrix_90(matrix):
-    """
-    2차원 배열을 시계방향으로 90도 회전
+"""
+2차원 배열을 시계방향으로 90도 회전
+
+Args:
+    matrix: N x N 2차원 리스트
+
+Returns:
+    회전된 2차원 리스트
+"""
+
+# TODO: n x n 크기의 새로운 배열을 생성하세요 (0으로 초기화)
+pass
     
-    Args:
-        matrix: N x N 2차원 리스트
-    
-    Returns:
-        회전된 2차원 리스트
-    """
-    
+# TODO: 원본 배열의 각 요소를 회전된 위치에 배치하세요
+# 힌트: (i, j) 위치의 요소는 회전 후 (j, n-1-i) 위치로 이동
+pass
+
+def rotate_matrix_90(matrix):    
     n = len(matrix)
     rotated = [[0]*n for _ in range(n)]
     # dimension = math.sqrt(n)
 
     # (0,0) , (0,1), (0,2) 0, 1, 2
     # (1,0) , (1,1), (1,2) 3, 4, 5
-    # (2,0) , (2,1), (2,2) 6, 7, 8
-
-    rotated     
-    for i in range (n):        
-        rotated[i, i] = matrix[i, i]        
-    
-    # TODO: n x n 크기의 새로운 배열을 생성하세요 (0으로 초기화)
-    pass
+    # (2,0) , (2,1), (2,2) 6, 7, 8           
         
-    # TODO: 원본 배열의 각 요소를 회전된 위치에 배치하세요
-    # 힌트: (i, j) 위치의 요소는 회전 후 (j, n-1-i) 위치로 이동
-    pass
-    
+    print(rotated)
     return rotated
 
-def print_matrix(matrix):
-    """배열을 보기 좋게 출력하는 헬퍼 함수"""
+"""배열을 보기 좋게 출력하는 헬퍼 함수"""
+def print_matrix(matrix):    
     for row in matrix:
         print(row)
 
