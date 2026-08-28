@@ -26,8 +26,7 @@
 - i < j 조건을 유지하여 중복을 방지하세요
 """
 
-def find_two_sum_pairs(nums, target):
-    """
+"""
     배열에서 합이 target이 되는 모든 인덱스 쌍 찾기
     
     Args:
@@ -36,16 +35,80 @@ def find_two_sum_pairs(nums, target):
     
     Returns:
         list: (i, j) 인덱스 쌍의 리스트
-    """
+"""
+# TODO: 이중 반복문으로 모든 쌍을 확인하세요
+## 외부 반복문: i는 0부터 n-1까지
+## 내부 반복문: j는 i+1부터 n까지 (중복 방지)
+## nums[i] + nums[j]가 target과 같으면 (i, j)를 결과에 추가
+pass  
+
+"""
+사전지식 
+1. 이중 반복문
+반복문 안에 또다른 반복문이 들어있는 구조
+보통 for문을 중첩해서 사용
+for i in range(3):
+    for j in range(2):
+        print(i, j)
+반복 구조는 아래와 같이 외부 반복문이 1번 실행되고, 내부 반복문이 모두 실행되는 구조
+i = 0
+    j = 0
+    j = 1
+
+i = 1
+    j = 0
+    j = 1
+
+i = 2
+    j = 0
+    j = 1
+
+2차원 배열(리스트) 다룰 때 많이 사용
+
+array = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
+
+for i in range(2):
+    for j in range(3):
+        print(array[i][j])
+
+i → 행
+j → 열
+array[i][j] → i번째 행의 j번째 값        
+
+array[0][0]  # 1
+array[0][2]  # 3
+array[1][1]  # 5
+
+2. 조건문 논리 연산자
+and: 둘 다 참일때 참
+or: 둘 중 하나라도 참이면 참
+not: 참/거짓을 반대로
+
+3. 완전 탐색 
+가능한 모든 경우의 수를 하나씩 전부 확인하는 방법
+대표적으로,
+-단순 반복문
+-이중/삼중 반복문
+-재귀
+-순열/조합
+-DFS/BFS를 이용한 모든 경우 탐색
+
+장점 : 모든 경우를 확인하기 때문에 놓치는게 없음
+단점 : 경우의 수가 많을 수록 느려짐
+"""
+def find_two_sum_pairs(nums, target):    
     pairs = []
     n = len(nums)
-    
-    # TODO: 이중 반복문으로 모든 쌍을 확인하세요
-    ## 외부 반복문: i는 0부터 n-1까지
-    ## 내부 반복문: j는 i+1부터 n까지 (중복 방지)
-    ## nums[i] + nums[j]가 target과 같으면 (i, j)를 결과에 추가
-    pass  
-    
+
+    for i in range(n-1):
+        j = i+1
+        for j in range(n):
+            if (nums[i]+nums[j] == target and i < j):
+                pair = (i,j)
+                pairs.append(pair)            
     return pairs
 
 # 테스트 케이스
