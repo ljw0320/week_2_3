@@ -42,9 +42,10 @@
 # 생성된 문자열이 회문인지 검사한다.
 
 # 사전 지식
-## 1. isalnum() ##
+## 1. isalnum() 
 # python의 문자열 메서드.
 # 문자열이 오직 문자(알파벳, 한글 등)와 숫자로만 이루어져 있는지 검사.
+# 맞으면 True, 아니면 False 반환
 # 문자열.isalnum()
 # 조건 1. 문자열이 비어있지 않아야 함.
 # 조건 2. 모든 문자가 문자 또는 숫자여야 함.
@@ -70,14 +71,71 @@
 
 #     return True
 
-## 2. lower() ##
-문자열 안의 영문 대문자를 소문자로 바꿔서 새로운 문자열을 반환
+## 2. lower() 
+# 문자열 안의 영문 대문자를 소문자로 바꿔서 새로운 문자열을 반환.
+# text = "Hello WORLD"
+# result = text.lower()
+# print(result)
+# 원래 문자열 자체가 바뀌는 것은 아니기 때문에 변수를 새로 저장하거나 초기화 해야한다.
+# 숫자나 특수문자는 그대로 유지된다
+# 추가 정보 : upper() = 입력문자 대문자로 변환
+
+## 3. [::-1] 
+# python의 슬라이싱 문법을 이용해서 문자열을 뒤집는 방식.
+# 기본형태 문자열[start:end:step]
+# start: 어디서 시작할지
+# end: 어디까지 갈지
+# step: 몇 칸씩 이동할지
+# text = "abcdef"
+# print(text[::1])
+# step = 1 이라서 왼쪽에서 오른쪽으로 한 칸 씩 읽는다.
+# text = "abcdef"
+# print(text[::-1])
+# step = -1 이라서 오른쪽에서 왼쪽으로 한 칸 씩 읽는다.
+# start와 end를 비워둔 이유
+# start 생략 -> 끝에서 시작
+# end 생략 -> 처음까지
+# 정리 : text[::1] 전체를 정방향으로 순회, text[::-1] 전체를 역방향으로 순회
+
+# def test_is_palindrome(text):    
+#     textInv = text[::-1]
+#     if (textInv == text) :
+#         print("회문임")
+#     else :
+#         print("회문이 아님")
+
+# test_is_palindrome("abcd")
+# test_is_palindrome("abcdcba")
+ 
 
 def is_palindrome(s):        
-    if not (s.isalnum())        
-        if len(s) == 0: # 문자열 길이가 0이면 바로 False 반환
-            return False
+    # 문자열에 특수문자가 없는 경우(문자열 길이가 0인 경우도 무시됨)
+    if (s.isalnum()):
+        s = s.lower()   # 문자열 소문자로 변환
+        if (s == s[::-1]) :
+            return True
+        else :
+            return False 
         
+    if not (s.isalnum()):       
+        if (len(s)) == 0: # 문자열 길이가 0이면 바로 False 반환
+            return False
+        else :             
+            # 문자열의 문자를 하나씩 검사하여 True면 리스트에 넣고 아니면 무시
+            newS = ""
+            for char in s:
+                if (not char.isalnum()): 
+                    continue;
+                else : 
+                    newS +=char
+            # 문자열 소문자로 변환
+            newS = newS.lower()                                
+            if (newS == newS[::-1]):
+                return True
+            else :
+                return False
+
+
 
     """
     문자열이 회문인지 판별하는 함수
