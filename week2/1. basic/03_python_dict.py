@@ -186,38 +186,50 @@
 
 # print(scores)
 
-
-def find_above_average_students(students):
-    """
-    평균 점수 이상인 학생들을 찾는 함수
+# 풀이 방법 1: 기본 풀이
+# def find_above_average_students(students):
+#     """
+#     평균 점수 이상인 학생들을 찾는 함수
     
-    Args:
-        students: 학생 정보 딕셔너리 리스트
+#     Args:
+#         students: 학생 정보 딕셔너리 리스트
     
-    Returns:
-        tuple: (평균 점수, 평균 이상 학생 이름 리스트)
-    """
-    # TODO: 모든 학생의 점수를 리스트로 추출하세요
-    pass
+#     Returns:
+#         tuple: (평균 점수, 평균 이상 학생 이름 리스트)
+#     """
+#     # TODO: 모든 학생의 점수를 리스트로 추출하세요
+#     pass
     
-    # TODO: 평균 점수를 계산하세요
-    pass
+#     # TODO: 평균 점수를 계산하세요
+#     pass
     
-    # TODO: 평균 이상인 학생들의 이름을 리스트로 추출하세요
-    pass
+#     # TODO: 평균 이상인 학생들의 이름을 리스트로 추출하세요
+#     pass
 
-    scores = list() # 학생들 점수 리스트 생성
-    for student in students:        
-        scores.append(student["score"]) # 점수 추출
+#     scores = list() # 학생들 점수 리스트 생성
+#     for student in students:        
+#         scores.append(student["score"]) # 점수 추출
 
-    average = sum(scores)/len(scores)
+#     average = sum(scores)/len(scores)
 
-    above_average_students = [] # 평균 이상 학생 리스트 생성
-    for student in students:
-        if (student["score"] > average):
-            above_average_students.append(student["name"])
+#     above_average_students = [] # 평균 이상 학생 리스트 생성
+#     for student in students:
+#         if (student["score"] > average):
+#             above_average_students.append(student["name"])
                 
+#     return average, above_average_students
+
+# 풀이 방법 2 : 리스트 컴프리헨션 사용
+def find_above_average_students(students):
+    # 점수 리스트 생성
+    scores = [student["score"] for student in students] #[저장할 값 for 변수 in 반복할대상]
+    # 평균 계산
+    average = sum(scores)/len(scores)
+    # 학생 리스트 생성
+    above_average_students = [student["name"] for student in students if student["score"] > average]
+
     return average, above_average_students
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -244,5 +256,4 @@ if __name__ == "__main__":
     avg, students = find_above_average_students(students2)
     print(f"평균 점수: {avg}")
     print(f"평균 이상 학생: {students}")
-
 
