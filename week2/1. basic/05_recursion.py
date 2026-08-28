@@ -22,8 +22,14 @@
 - 피보나치: fib(n) = fib(n-1) + fib(n-2), fib(0) = 0, fib(1) = 1
 """
 
-def factorial(n):
-    """
+"""
+사전지식
+재귀함수(recursion)
+특정 조건을 만족할 때 까지 자기 자신이 반환 되어 반복되는 함수
+
+"""
+
+"""
     재귀를 사용한 팩토리얼 계산
     
     Args:
@@ -31,30 +37,47 @@ def factorial(n):
     
     Returns:
         n의 팩토리얼 값
-    """
-    # TODO: base case를 작성하세요
-    # n이 0이거나 1이면 1을 반환
-    pass
-    
-    # TODO: recursive case를 작성하세요
-    pass
+"""
+# TODO: base case를 작성하세요
+# n이 0이거나 1이면 1을 반환
+pass
+
+# TODO: recursive case를 작성하세요
+pass
+
+def factorial(n):
+    if (n == 0): return 1
+    else:         
+        return n*factorial(n-1)
+
+# 원리
+# 앞의 출력이 입력값이 되는 구조이고, factorial(n-1)은 n == 0이 될때까지 반복된다.
+# 즉 return은 아래와 같다.
+# n*(n-1)*((n-1)-1)*(((n-1)-1)-1)*...*1
+# 따라서 입력값인 n은 0이 될때 까지 계속 1씩 줄어들며 앞의 출력값과 곱해진 후 다음 시행의 입력값이 된다.
+
+"""
+재귀를 사용한 피보나치 수 계산
+
+Args:
+    n: 구하고자 하는 피보나치 수의 인덱스
+
+Returns:
+    n번째 피보나치 수
+"""
+# TODO: base case를 작성하세요
+# n이 0이면 0, n이 1이면 1 반환
+pass
+
+# TODO: recursive case를 작성하세요
+pass
 
 def fibonacci(n):
-    """
-    재귀를 사용한 피보나치 수 계산
-    
-    Args:
-        n: 구하고자 하는 피보나치 수의 인덱스
-    
-    Returns:
-        n번째 피보나치 수
-    """
-    # TODO: base case를 작성하세요
-    # n이 0이면 0, n이 1이면 1 반환
-    pass
-    
-    # TODO: recursive case를 작성하세요
-    pass
+    if (n==1): return 1
+    if (n==0): return 0
+    return fibonacci(n-1)+fibonacci(n-2)
+
+fibonacci(5)
 
 # 테스트 케이스
 if __name__ == "__main__":
