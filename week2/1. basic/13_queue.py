@@ -26,26 +26,30 @@
 
 from collections import deque
 
-def process_print_queue(jobs):
-    """
-    프린터 작업을 순서대로 처리
-    
-    Args:
-        jobs: 작업 리스트
-    
-    Returns:
-        처리된 작업 리스트
-    """
-    # TODO: deque로 큐 생성
+"""
+프린터 작업을 순서대로 처리
+
+Args:
+    jobs: 작업 리스트
+
+Returns:
+    처리된 작업 리스트
+"""
+# TODO: deque로 큐 생성
+
+# TODO: 큐가 비어있지 않은 동안 반복
+## 큐에서 작업 꺼내기
+## 작업 처리 (출력 및 리스트에 추가)
+pass
+
+def process_print_queue(jobs):    
     queue = deque(jobs)
     
     processed = []
-    
-    # TODO: 큐가 비어있지 않은 동안 반복
-    ## 큐에서 작업 꺼내기
-    ## 작업 처리 (출력 및 리스트에 추가)
-    pass
-    
+    while (queue) :
+        char = queue.popleft() # 큐의 왼쪽(앞)부터 꺼내서 변수에 저장
+        print("처리: "+char) # 처리 과정 출력    
+        processed.append(char)
     return processed
 
 # 테스트 케이스
