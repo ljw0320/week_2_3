@@ -55,6 +55,8 @@
 # print(array)
 # for i in range(3):  # i를 사용할 때
 # for _ in range(3):  # 값은 필요 없고 3번 반복만 할 때(단 _도 실제로는 변수라 값을 가지고는 있음.)
+# 2차원 배열끼리 값을 삽입하는 법
+# matrix_1[a][b] = matrix_2[c][d]와 같이 각 행과 열을 입력하여 원소에 접근한 후 대입한다.
 
 ## 2. 제곱근
 # import math로 sqrt라는 제곱근 메소드 사용 가능
@@ -91,14 +93,14 @@ pass
 
 def rotate_matrix_90(matrix):    
     n = len(matrix)
-    rotated = [[0]*n for _ in range(n)]
-    # dimension = math.sqrt(n)
-
+    # 2차원 배열 생성
+    rotated = [[0]*n for _ in range(n)]    
     # (0,0) , (0,1), (0,2) 0, 1, 2
     # (1,0) , (1,1), (1,2) 3, 4, 5
     # (2,0) , (2,1), (2,2) 6, 7, 8           
-        
-    print(rotated)
+    for i in range(n):
+        for j in range(n):
+            rotated[j][n-1-i] = matrix[i][j]
     return rotated
 
 """배열을 보기 좋게 출력하는 헬퍼 함수"""
