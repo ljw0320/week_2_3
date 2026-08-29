@@ -24,28 +24,61 @@
 - 닫는 괄호 ')'를 만나면 스택에서 pop
 - 마지막에 스택이 비어있으면 True
 """
+"""
+LIFO : 후입선출
+FIFO : 선입선출
+
+"""
+"""
+괄호 짝이 맞는지 확인
+
+Args:
+    s: 괄호 문자열
+
+Returns:
+    올바른 괄호면 True, 아니면 False
+"""
+"""
+사전지식
+# 1) 스택(stack)
+# 데이터를 쌓아두는 자료구조
+# 특징: 나중에 들어온 데이터가 먼저 나온다(LIFO).
+접시 C  ← 가장 나중에 올림, 가장 먼저 꺼냄
+접시 B
+접시 A
+파이썬에서는 리스트로 구현
+| 연산     | 의미         | Python            |
+| -------- | ----------- | ----------------- |
+| push     | 데이터 넣기      | `stack.append(x)` |
+| pop      | 마지막 데이터 꺼내기 | `stack.pop()`     |
+| peek/top | 마지막 데이터 확인  | `stack[-1]`       |
+| empty    | 비어있는지 확인    | `if not stack:`   |
+
+# 2) 삼항연산자
+참일 때 값 if 조건 else 거짓일 때 값
+조건이 참이면 값1, 조건이 거짓이면 값2
+"""
+    
+# TODO: 문자열의 각 문자를 순회
+## : 여는 괄호 '('면 스택에 추가
+## : 닫는 괄호 ')'면
+## 스택이 비어있으면 False 반환
+## 아니면 스택에서 pop
+pass
+
+# TODO: 반복이 끝나면 스택이 비어있는지 확인
+pass
 
 def is_valid_parentheses(s):
-    """
-    괄호 짝이 맞는지 확인
-    
-    Args:
-        s: 괄호 문자열
-    
-    Returns:
-        올바른 괄호면 True, 아니면 False
-    """
     stack = []
-    
-    # TODO: 문자열의 각 문자를 순회
-    ## : 여는 괄호 '('면 스택에 추가
-    ## : 닫는 괄호 ')'면
-    ## 스택이 비어있으면 False 반환
-    ## 아니면 스택에서 pop
-    pass
-    
-    # TODO: 반복이 끝나면 스택이 비어있는지 확인
-    pass
+    for char in s:
+        if char == '(':
+            stack.append(char)
+        if char == ')':
+            if not stack:  
+                return False
+            else : stack.pop()                
+    return True if not stack else False
 
 # 테스트 케이스
 if __name__ == "__main__":
