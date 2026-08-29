@@ -130,6 +130,20 @@ class LinkedList:
         new_node = Node(data)
 
         # ─── Level 1: 리스트가 비어 있는 경우 ────────────────────────
+        # 리스트 head가 비어있으면 새로운 노드가 head가 됨
+        if self.head is None: 
+            self.head = new_node
+            return            
+        # ─── Level 2: 마지막 노드 찾기 ──────────────────────────────
+        # 마지막 노드의 다음 노드는 없음
+        current = self.head
+        while current.next is not None:
+            current = current.next
+
+        # ─── Level 3: 마지막 노드의 next 에 새 노드를 붙이기 ─────────
+        current.next = new_node
+
+        """# ─── Level 1: 리스트가 비어 있는 경우 ────────────────────────
         # 힌트: self.head 가 None 이면, head 에 new_node 를 바로 꽂고 return.
         # TODO: 아래 pass 를 지우고 if 문을 완성하세요.
         #   if self.head is None:
@@ -149,7 +163,7 @@ class LinkedList:
         # ─── Level 3: 마지막 노드의 next 에 새 노드를 붙이기 ─────────
         # 위 반복문이 끝나면 current 가 곧 마지막 노드입니다.
         # TODO: current.next = new_node
-        pass
+        pass"""
 
     def print_list(self):
         """
@@ -158,20 +172,27 @@ class LinkedList:
         예: head ─▶ [10|●]─▶[20|●]─▶[30|None]  →  [10, 20, 30]
         """
         values = []
+        # # ─── Level 1: 시작 위치 ─────────────────────────────────────
+        # 헤드에서 시작
+        current = self.head
+        # # ─── Level 2: 끝까지 순회 ──────────────────────────────────
+        while current is not None:            
+            values.append(current.data) # 리스트에 데이터 삽입
+            current = current.next # 다음 노드로 이동            
+        return values
+        # # ─── Level 1: 시작 위치 ─────────────────────────────────────
+        # # current 라는 "이동용 변수" 를 head 에서 시작시킵니다.
+        # # TODO: current = self.head
+        # pass
 
-        # ─── Level 1: 시작 위치 ─────────────────────────────────────
-        # current 라는 "이동용 변수" 를 head 에서 시작시킵니다.
-        # TODO: current = self.head
-        pass
-
-        # ─── Level 2: 끝까지 순회 ──────────────────────────────────
-        # current 가 None 이 되면 "리스트의 끝" 이라는 신호입니다.
-        # 한 칸 한 칸 따라가면서 data 를 values 에 모으세요.
-        # TODO: 아래 두 줄을 while 문 안에 작성하세요.
-        #   while current is not None:
-        #       values.append(current.data)
-        #       current = current.next
-        pass
+        # # ─── Level 2: 끝까지 순회 ──────────────────────────────────
+        # # current 가 None 이 되면 "리스트의 끝" 이라는 신호입니다.
+        # # 한 칸 한 칸 따라가면서 data 를 values 에 모으세요.
+        # # TODO: 아래 두 줄을 while 문 안에 작성하세요.
+        # #   while current is not None:
+        # #       values.append(current.data)
+        # #       current = current.next
+        # pass
 
         return values
 
