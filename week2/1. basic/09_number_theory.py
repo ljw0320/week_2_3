@@ -71,71 +71,128 @@ pass
 # case 1) 둘 다 소수
     # 최대 공약수는 1
 
-# case 2) 둘 다 소수가 아닌 자연수
-#   둘 중 작은 수를 구한다. N>n이면 
-#   1) N%n==0이면 최대공약수는 n
-#   2) 2로 나눈 후 나머지가 0이 아니면 종료한다.
-
-# case 3) 한쪽은 소수(P), 한쪽은 소수가 아닌 자연수(N)
+# case 2) 한쪽은 소수(P), 한쪽은 소수가 아닌 자연수(N)
 # - P>N: 최대 공약수는 1
 # - P<N: 
 #   N%P==0일 때, P가 최대 공약수. 
 #   N%P!=0일 때, 최대공약수는 1
 
-def gcd_iterative(a, b):    
-    #최대공약수 선언
-    qcd = 1
-    primeCheck_a = primeCheck_b = False
-    if is_prime(a):
-        primeCheck_a = True
-    if is_prime(b):
-        primeCheck_b = True
-    #case 1) 한쪽은 소수(P), 한쪽은 소수가 아닌 자연수(N)
-    if (primeCheck_a and primeCheck_b): 
-        return 1
-    #case 2) 둘 다 소수가 아닌 자연수
-    if (primeCheck_a == False and primeCheck_b == False):
-        if (a >= b):
-            if (a%b==0): 
-                return b
-            for i in range(b):
-                if i>=2 and a%i==0:
-                    qcd = qcd*i
+# case 3) 둘 다 소수가 아닌 자연수
+#   둘 중 작은 수를 구한다. N>=n이면 
+#   1) N%n==0이면 최대공약수는 n
+#   2) 2로 나눈 후 나머지가 0이 아니면 종료한다.
 
-
-        
-
+# 공약수 구하는 함수
+def get_cd(a,b):
+    iter_a = int(math.sqrt(a))
+    iter_b = int(math.sqrt(b))
+    div_a_list = list()
+    div_b_list = []
+    # 각 수의 약수 리스트 구하기
+    temp_div_a = a
+    temp_div_b = b
+    count_a = 2
+    count_b = 2
+    while iter_a >= count_a:
+        if count_a >= 2:
+            if temp_div_a%count_a==0:
+                div_a_list.append(count_a)
+                temp_div_a = int(temp_div_a/count_a)
+                count_a = 1
+        count_a += 1
+            
+    while iter_b >= count_b:
+        if count_b >= 2:
+            if temp_div_b%count_b==0:
+                div_b_list.append(count_b)
+                temp_div_b = int(temp_div_b/count_b)
+                count_b = 1                    
+        count_b += 1
+    # for count_a in range(iter_a+1):        
+    #     if n >= 2:
+    #         if temp_div_a%n==0:
+    #             div_a_list.append(n)
+    #             temp_div_a = int(temp_div_a/n)
+    #             count_a = 2
     
+    # for n in range(iter_b+1):
+    #     if n >= 2:
+    #         if temp_div_b%n==0: 
+    #             div_b_list.append(n)
+    #             temp_div_b = int(temp_div_b/n)
 
+    # 공약수 리스트 구하기:     
+    cd_list = []
+    # 작은 리스트가 외부 반복이 되어야 함
+    if (b>=a):
+        for i in range(len(div_a_list)):
+            for j in range(len(div_b_list)):
+                if div_a_list[i]==div_b_list[j]:
+                    cd_list.append(div_b_list.pop(j))
+                    break
+    else :
+        for i in range(len(div_b_list)):
+            for j in range(len(div_a_list)):
+                if div_b_list[i]==div_a_list[j]:
+                    cd_list.append(div_a_list.pop(j))                    
+                    break
+    return cd_list
+
+def gcd_iterative(a, b):  
+    gcd = 1
+    cd_list = []  
+    cd_list = get_cd(a,b)
+    for num in cd_list:
+        gcd = gcd*num
+    return gcd
+
+# print(gcd_iterative(16, 48))
+# print(gcd_iterative(32, 48))
+# print(gcd_iterative(48, 48))
+# print(gcd_iterative(17, 35))
+# print(gcd_iterative(48, 16))
+    
+"""
+최소공배수 계산
+
+Args:
+    a, b: 두 양의 정수
+
+Returns:
+    최소공배수
+"""
+# TODO: LCM 계산
+pass
 def lcm(a, b):
-    """
-    최소공배수 계산
-    
-    Args:
-        a, b: 두 양의 정수
-    
-    Returns:
-        최소공배수
-    """
-    # TODO: LCM 계산
-    pass
+    # 최대공약수 계산
+    tempGcd = gcd(a, b)
+
+    # 각 자연수를 최대 공약수로 나눈 몫 계산
+    q_a = a/tempGcd
+    q_b = b/tempGcd
+
+    # 최소공배수 계산 후 반환
+    return tempGcd*q_a*q_b
+
+"""
+확장 유클리드 호제법
+ax + by = gcd(a, b)를 만족하는 x, y를 찾음
+
+Args:
+    a, b: 두 양의 정수
+
+Returns:
+    (gcd, x, y) 튜플
+"""
+# TODO: 확장 유클리드 호제법 구현
+# base case: b가 0이면 (a, 1, 0) 반환    
+# recursive case
+# 역추적하며 x, y 계산
+pass
+
 
 def extended_gcd(a, b):
-    """
-    확장 유클리드 호제법
-    ax + by = gcd(a, b)를 만족하는 x, y를 찾음
-    
-    Args:
-        a, b: 두 양의 정수
-    
-    Returns:
-        (gcd, x, y) 튜플
-    """
-    # TODO: 확장 유클리드 호제법 구현
-    # base case: b가 0이면 (a, 1, 0) 반환    
-    # recursive case
-    # 역추적하며 x, y 계산
-    pass
+    return 
 
 """
 소수 판별
@@ -155,14 +212,15 @@ pass
 def is_prime(n):    
     if n < 2: return False
     if n == 2: return True    
+    
+    num = int(math.sqrt(n))
 
     # 2 ~ sqrt(n)까지 나누어 떨어지는지 확인
-    num = int(math.sqrt(n))
-    for i in range(num):
+    for i in range(num+1):
         if i>=2 and n%i == 0: return False
 
     # 3 ~ sqrt(n)까지 나누어 떨어지는지 확인(홀수)
-    if not (n%2 == 0):
+    if not n%2 == 0:
         for j in range(num):
             if j>=3 and n%j == 0: return False
 
