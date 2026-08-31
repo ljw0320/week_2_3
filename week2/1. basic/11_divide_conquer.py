@@ -46,24 +46,27 @@ pass
 pass
 
 def find_max_divide_conquer(arr, left, right):
-    if left == right: return arr[left] # 종료 조건
-    mid = int((left+right)/2)    
-    if arr[left]>arr[mid]: 
-        return
-    # find_max_divide_conquer(arr, left, mid)
-    # find_max_divide_conquer(arr, mid+1, right)
-
-    # arr_left = list()
-    # arr_right = list()
-    # arr_left.append(arr[left::mid])
-    # arr_right.append(arr[(mid+1)::right])
-    # def getBigger(a, b):
-    #     if a>=b: return a
-    #     else : return b
+    if len(arr) == 1: 
+        return arr[0] # 종료 조건
     
+    mid = int((left+right)/2)    
+    arr_left = []
+    arr_right = []
 
+    for i in range(len(arr)):
+        if mid>=i: arr_left.append(arr[i])    
+        else: arr_right.append(arr[i])
 
+    
+    max_left = max(arr_left)
+    max_right = max(arr_right)
+    # max_left = max(arr_left[0:mid:1])
+    # max_right = max(arr_right[0:right-mid:1])
 
+    if max_left>=max_right:
+        return find_max_divide_conquer(arr_left, 0, len(arr_left)-1)
+    else :
+        return find_max_divide_conquer(arr_right, 0, len(arr_right)-1)        
 
 # 테스트 케이스
 if __name__ == "__main__":
