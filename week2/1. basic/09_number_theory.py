@@ -145,12 +145,6 @@ def gcd_iterative(a, b):
     for num in cd_list:
         gcd = gcd*num
     return gcd
-
-# print(gcd_iterative(16, 48))
-# print(gcd_iterative(32, 48))
-# print(gcd_iterative(48, 48))
-# print(gcd_iterative(17, 35))
-# print(gcd_iterative(48, 16))
     
 """
 최소공배수 계산
@@ -168,8 +162,8 @@ def lcm(a, b):
     tempGcd = gcd(a, b)
 
     # 각 자연수를 최대 공약수로 나눈 몫 계산
-    q_a = a/tempGcd
-    q_b = b/tempGcd
+    q_a = int(a/tempGcd)
+    q_b = int(b/tempGcd)
 
     # 최소공배수 계산 후 반환
     return tempGcd*q_a*q_b
@@ -190,9 +184,28 @@ Returns:
 # 역추적하며 x, y 계산
 pass
 
+# 재귀함수에서 받아온 x,y를 어떻게 현재 a,b에 맞는 x,y로 바꾸는가가 핵심
+# extended_gcd(b, a%b)가
+# b*x1 + (a % b)*y1 = gcd(a, b)를 만족하는 값을 반환했다고 가정
+# a % b = a - (a // b) * b
+# b*x1 + (a - (a // b)*b)*y1
+# b*x1 + a*y1 - (a // b)*b*y1
+# a,b기준으로 정리 : a*y1 + b*(x1 - (a // b)*y1)
+# 
+
+
+
 
 def extended_gcd(a, b):
-    return 
+    if b == 0: 
+        return a, 1, 0
+
+    gcd, x1, y1 = extended_gcd(b, a%b)
+
+    x = y1
+    y = x1 - (a//b)*y1
+
+    return gcd, x, y
 
 """
 소수 판별
