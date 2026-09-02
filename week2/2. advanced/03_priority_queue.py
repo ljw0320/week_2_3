@@ -26,6 +26,8 @@
 
 import heapq
 
+# 튜플 입력을 가공하여 
+
 def process_emergency_room(patients):
     """
     환자를 우선순위에 따라 처리
@@ -39,15 +41,24 @@ def process_emergency_room(patients):
     # TODO: 빈 힙 생성
     heap = []
     
-    
     # TODO: 모든 환자를 힙에 추가
+    for i in range(len(patients)):
+        sorted_patient = patients[i][::-1]
+        heapq.heappush(heap, sorted_patient)
     pass
-        
+    
     processed = []
     
     # TODO: 힙이 비어있지 않은 동안 반복
     ## 힙에서 우선순위가 가장 높은 환자 꺼내기
     ## 환자 처리
+    for i in range(len(heap)):
+        if not heap:
+            break
+        else :
+            priority, name = heapq.heappop(heap)
+            print(f"처리: {name} (우선순위: {priority})")   
+            processed.append(name) 
     pass
         
     return processed
