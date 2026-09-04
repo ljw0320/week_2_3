@@ -70,7 +70,7 @@ def create_graph(vertices, edges, directed=False):
         for i in range(vertices):            
             value = []            
             graph[i] = value
-
+ 
             for u, v in totals:
                 if i != u:  
                     continue                
