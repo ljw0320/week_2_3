@@ -33,10 +33,27 @@
 """
 
 """
-각 노드의 연결 상태는 주어짐
-순회 조건
-
+재귀 함수 조건
+1) base case : 종료 조건
+2) 재귀 호출
 """
+
+# 재귀함수 시각화 #
+# from function_visualizer import FunctionVisualizer    
+# visualizer = FunctionVisualizer()
+
+# @visualizer.visualize(param_names=["n"])
+# def fib(n):
+#     if n <= 1:
+#         return n
+#     else:
+#         return fib(n-1) + fib(n-2)
+
+# result = fib(10)
+
+# visualizer.render("preorder")
+# 재귀함수 시각화 #
+
 class TreeNode:
     """이진 트리 노드"""
     def __init__(self, value):
@@ -64,23 +81,22 @@ def preorder(root):
     return result
 
 
-
-
 def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None:
+        return []    
     
     # TODO: 왼쪽 서브트리 순회
-    pass
+    result += inorder(root.left)
     
     # TODO: 루트 값 추가
-    pass
+    result.append(root.value)
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    result += inorder(root.right)
     
     return result
 
@@ -89,17 +105,18 @@ def postorder(root):
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None:
+        return []
     
     # TODO: 왼쪽 서브트리 순회
-    pass
+    result += postorder(root.left)
     
     # TODO: 오른쪽 서브트리 순회
-    pass
+    result += postorder(root.right)
     
     # TODO: 루트 값 추가
-    pass
-    
+    result.append(root.value)
+        
     return result
 
 # 테스트 케이스
