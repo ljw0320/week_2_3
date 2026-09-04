@@ -70,6 +70,7 @@ DP가 필요한 경우:
 - 자원 할당
 """
 
+# 함수 파라미터에 메모를 입력하여 중복방지  
 def fibonacci_memo(n, memo=None):
     """
     메모이제이션을 사용한 피보나치 (하향식 DP)
@@ -82,17 +83,22 @@ def fibonacci_memo(n, memo=None):
         n번째 피보나치 수
     """
     # TODO: memo가 None이면 빈 딕셔너리로 초기화
-    pass
+    if memo is None:
+        memo = {}
     
     # TODO: base case 
-    pass
+    if n == 1:
+        return 1
+    if n == 0:
+        return 0
     
     # TODO: 이미 계산한 값이 memo에 있으면 반환
-    pass
+    if memo.get(n) is not None:
+        return memo[n]
     
-    # TODO: 재귀 호출하여 계산하고 memo에 저장
-    pass
-    
+    # TODO: 재귀 호출하여 계산하고 memo에 저장    
+    memo[n] = fibonacci_memo(n-1, memo) + fibonacci_memo(n-2, memo)
+
     return memo[n]
 
 # 테스트 케이스
