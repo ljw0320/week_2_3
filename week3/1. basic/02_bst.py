@@ -70,7 +70,8 @@ def search_bst(root, target):
     if target > root.value:
         return search_bst(root.right, target)
 
-    
+# 검색 횟수도 출력할 수 있는 함수 만들어보기
+
 
 # 테스트 케이스
 if __name__ == "__main__":
