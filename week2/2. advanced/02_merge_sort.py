@@ -33,13 +33,21 @@ def merge(arr, left, mid, right):
         right: 오른쪽 부분의 끝 인덱스
     """
     # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사
+    
+    # 배열의 왼쪽 부분(arr[mid] 포함)
+    left_arr = arr[left:mid+1] 
+
+    # 배열의 오른쪽 부분(arr[mid] 제외)
+    right_arr = arr[mid+1:right+1]
+
     pass
     
-    # TODO: 두 배열을 병합
+    # TODO: 두 배열을 병합    
     pass
     
     
     # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사
+    if 
     pass
     
     # TODO: 남은 원소들을 복사

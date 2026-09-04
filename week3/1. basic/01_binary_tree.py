@@ -32,6 +32,11 @@
 - 순회 순서만 다름
 """
 
+"""
+각 노드의 연결 상태는 주어짐
+순회 조건
+
+"""
 class TreeNode:
     """이진 트리 노드"""
     def __init__(self, value):
@@ -44,18 +49,22 @@ def preorder(root):
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
+    if root is None:
+        return []
     
-    # TODO: 루트 값 추가
-    pass
+    # TODO: 루트 값 추가    
+    result.append(root.value)
+        
+    # TODO: 왼쪽 서브트리 순회        
+    result += preorder(root.left)
     
-    # TODO: 왼쪽 서브트리 순회
-    pass
-    
-    # TODO: 오른쪽 서브트리 순회
-    pass
+    # TODO: 오른쪽 서브트리 순회    
+    result += preorder(root.right)    
     
     return result
+
+
+
 
 def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
@@ -106,7 +115,7 @@ if __name__ == "__main__":
     root.right = TreeNode(3)
     root.left.left = TreeNode(4)
     root.left.right = TreeNode(5)
-    
+
     print("=== 이진 트리 순회 ===")
     print(f"전위 순회: {preorder(root)}")
     print(f"중위 순회: {inorder(root)}")

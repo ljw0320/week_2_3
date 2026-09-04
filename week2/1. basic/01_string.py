@@ -133,30 +133,42 @@
 #                 return False
 
 ## 풀이 방법 2번 : 양 끝 인덱스를 이용한 투 포인터 방식
+# def is_palindrome(s):        
+#     # 특수문자가 없는 경우
+#     if (s.isalnum()) : 
+#         sLength = len(s)
+#         s = s.lower()        
+#         for i in range(sLength) :
+#             if (s[i] != s[sLength-i-1]):
+#                 return False            
+#         return True
+#     else : 
+#         if (len(s) == 0) : # 빈 문자열
+#             return False
+#         newS = ""
+#         for char in s : # 문자열 추출
+#             if (not char.isalnum()): # 문자가 알파벳, 숫자가 아닌경우 continue   
+#                 continue
+#             newS += char
+#         newS = newS.lower() # 문자열 소문자 변환
+#         newsLength = len(newS)
+#         for i in range(newsLength):
+#             if (newS[i] != newS[newsLength-i-1]):                
+#                 return False            
+#         return True
+
 def is_palindrome(s):        
-    # 특수문자가 없는 경우
-    if (s.isalnum()) : 
-        sLength = len(s)
-        s = s.lower()        
-        for i in range(sLength) :
-            if (s[i] != s[sLength-i-1]):
-                return False            
+    s_check = ""
+
+    for char in s:
+        if char.isalnum():
+            s_check+=char
+    s_check = s_check.lower()        
+
+    if s_check == s_check[::-1]:
         return True
     else : 
-        if (len(s) == 0) : # 빈 문자열
-            return False
-        newS = ""
-        for char in s : # 문자열 추출
-            if (not char.isalnum()): # 문자가 알파벳, 숫자가 아닌경우 continue   
-                continue
-            newS += char
-        newS = newS.lower() # 문자열 소문자 변환
-        newsLength = len(newS)
-        for i in range(newsLength):
-            if (newS[i] != newS[newsLength-i-1]):                
-                return False            
-        return True
-
+        return False
 ### 풀이 방법 3번 : recursion 사용
 # 반복되는 부분에 재귀
 # 반복되면 안되는 부분은 분리

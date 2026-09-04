@@ -55,8 +55,15 @@ def check_solution(problem_file):
         return False, f"❌ 정답 파일을 찾을 수 없습니다: {output_file.name}"
 
     try:
+        # result = subprocess.run(
+        #     ['python3', str(problem_path)],
+        #     capture_output=True,
+        #     text=True,
+        #     timeout=10,
+        #     cwd=str(SCRIPT_DIR),
+        # )
         result = subprocess.run(
-            ['python3', str(problem_path)],
+            [sys.executable, str(problem_path)],
             capture_output=True,
             text=True,
             timeout=10,

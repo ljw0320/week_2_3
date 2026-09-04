@@ -103,6 +103,17 @@ def rotate_matrix_90(matrix):
             rotated[j][n-1-i] = matrix[i][j]
     return rotated
 
+def rotate_matrix_90(matrix):
+    n = len(matrix)
+    rotated = []
+
+    for _ in range(n):
+        rotated.append([0]*n)
+
+    for i in range(n):
+        for j in range(n):
+            rotated[j, n-1-i] = matrix[]
+
 """배열을 보기 좋게 출력하는 헬퍼 함수"""
 def print_matrix(matrix):    
     for row in matrix:
