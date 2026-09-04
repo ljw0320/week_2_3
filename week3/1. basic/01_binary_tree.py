@@ -142,6 +142,8 @@ class TreeNode:
     
 #     return result
 
+# extend의 경우 입력된 배열을 풀어서 각각을 원소로 저장한다.
+# 따라서 +=과 같은 결과가 출력된다.
 def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
     result = []

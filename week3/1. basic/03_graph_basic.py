@@ -41,14 +41,79 @@ def create_graph(vertices, edges, directed=False):
         그래프 딕셔너리
     """
     # TODO: 빈 그래프 초기화
-    pass
+    graph = dict()    
     
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
-    ## 무방향 그래프면 반대 방향도 추가
-    pass
+    # u : 출발, v : 도착
+    # u = key, v = value list
+    # edges : 튜플 리스트            
+
+    # 방향 그래프
+    if directed == True:
+        for i in range(vertices):            
+            value = []            
+            graph[i] = value
+
+            for u, v in edges:
+                if i != u:  
+                    continue                
+                value.append(v)  
+        return graph
+
+    # 무방향 그래프
+    else :
+        edges_inv = [edge[::-1] for edge in edges]
+        totals = edges + edges_inv   
+        totals.sort()
+
+        for i in range(vertices):            
+            value = []            
+            graph[i] = value
+
+            for u, v in totals:
+                if i != u:  
+                    continue                
+                value.append(v)              
+
+        return graph
+
+"""    # 방향 그래프 
+
+    # 외부 순회: 모든 정점
+    # 내부 순회: 간선
+    for i in range(vertices):
+        # 빈 리스트 생성
+        value = []
+        # 키-값 매칭
+        graph[i] = value
+
+        for u, v in edges:
+            if i != u:  continue
+            # 도착점 리스트 생성
+            value.append(v)                    
+                
+    # if directed :
+    #     for u,v in edges:
+    #         # 도착점 리스트로 생성
+    #         value = [v]        
+    #         # 시작점과 도착점 연결
+    #         if graph.get(u) is None:             
+    #             graph[u] = value
+    #         else :
+    #             end = graph.get(u)
+    #             end.append(v)
+    if directed : 
+        return graph
     
-    return graph
+    ## 무방향 그래프면 반대 방향도 추가    
+    # 간선 리스트 내부 튜플 뒤집기    
+    for i in range(vertices):
+        for v, u in edges:
+            if i != u: continue
+            graph.get(i).append(v)
+    
+    return graph"""
 
 # 테스트 케이스
 if __name__ == "__main__":
