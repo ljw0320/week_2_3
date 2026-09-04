@@ -36,6 +36,47 @@
 재귀 함수 조건
 1) base case : 종료 조건
 2) 재귀 호출
+
+# arr.append(value) vs arr +=value의 차이
+  append() : 값을 하나의 원소로 추가
+    arr = [1, 2, 3]
+    arr.append([4, 5])
+
+    print(arr) => [1, 2, 3, [4, 5]]
+
+  += : 오른쪽의 iterable을 '풀어서' 이어 붙임(각각의 '순회 가능한' 값을 추가)  (extend()와 거의 유사)
+    arr = [1, 2, 3]
+    arr += [4, 5]
+
+    print(arr) => [1, 2, 3, 4, 5]  
+    
+    # 중요한 차이점
+    arr = [1, 2, 3]
+    arr.append(4)   # 가능
+    arr += 4        # 오류
+    4는 순회 가능한 값이 아니므로 4를 추가하고 싶다면 리스트로 감싸야 한다.
+    arr += [4]
+
+    # 문자열의 경우도 차이가 있다. 
+        arr = [1, 2]
+        arr += "abc" => [1, 2, 'a', 'b', 'c']
+
+        arr = [1, 2]
+        arr.append("abc") => [1, 2, 'abc']
+        
+"""
+
+"""
+arr1 = [1, 2, 3]
+arr1.append([4,5])
+
+arr2 = [1, 2, 3]
+arr2+=[4,5]
+
+arr3 = [1, 2, 3]
+arr3.extend([4,5])
+
+print(arr1, arr2, arr3)
 """
 
 # 재귀함수 시각화 #
@@ -80,6 +121,24 @@ def preorder(root):
     
     return result
 
+# def preorder(root):
+#     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
+#     result = []
+    
+#     # TODO: root가 None이면 빈 리스트 반환
+#     if root is None:
+#         return []
+    
+#     # TODO: 루트 값 추가    
+#     result.append(root.value)
+        
+#     # TODO: 왼쪽 서브트리 순회        
+#     result.append(preorder(root.left))
+    
+#     # TODO: 오른쪽 서브트리 순회    
+#     result.append(preorder(root.right))
+    
+#     return result
 
 def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""

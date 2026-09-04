@@ -24,6 +24,8 @@
    / \
   2   4
 
+2->3->4
+
 찾는 값: 4 → True
 찾는 값: 6 → False
 
@@ -39,24 +41,36 @@ class TreeNode:
         self.left = None
         self.right = None
 
+"""
+BST에서 값 검색
+
+Args:
+    root: 트리 루트
+    target: 찾을 값
+
+Returns:
+    True/False
+"""
 def search_bst(root, target):
-    """
-    BST에서 값 검색
-    
-    Args:
-        root: 트리 루트
-        target: 찾을 값
-    
-    Returns:
-        True/False
-    """
+
     # TODO: root가 None이면 False 반환
-    pass
+    if root is None:
+        return False
     
     # TODO: 값을 찾으면 True 반환
     ## target이 작으면 왼쪽 서브트리에서 검색
     ## target이 크면 오른쪽 서브트리에서 검색
-    pass
+
+    if target == root.value:
+        return True
+    
+    if target < root.value:
+        return search_bst(root.left, target)
+
+    if target > root.value:
+        return search_bst(root.right, target)
+
+    
 
 # 테스트 케이스
 if __name__ == "__main__":
