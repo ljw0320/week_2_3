@@ -58,12 +58,16 @@ def bfs(graph, start):
     while queue:
         check = queue.popleft()
         
-        if check not in visited:
-            visited.append(check)
+        # if check not in visited:
+        #     visited.append(check)
 
         for node in graph[check]:
             if node not in visited:
-                queue.append(node)                    
+                queue.append(node) 
+
+        if check not in visited:
+            visited.append(check)        
+                           
     return visited
 
 # 테스트 케이스
