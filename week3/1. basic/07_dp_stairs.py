@@ -44,18 +44,46 @@ def climb_stairs(n):
     
     Returns:
         n번째 계단까지 오르는 방법의 수
-    """
-    # TODO: 특별한 경우 처리
-    pass
-    
+    """    
+    if n == 0:
+        return 1
+    if n == 1:
+        return 1    
     
     # TODO: dp 배열 생성 및 초기화
-    pass
+    dp = [1]*(n+1)        
     
-    # TODO: 작은 문제부터 차례로 계산
-    pass
-    
+    # TODO: 작은 문제부터 차례로 계산(재귀호출)
+    dp[n] = climb_stairs(n-1) + climb_stairs(n-2)    
     return dp[n]
+
+"""
+현재 코드 : 
+n번째 계단까지 오르는 방법의 수는 구할 수 있지만,
+dp 배열이 정상적으로 만들어 지지는 않는다.[구하려는 계단 제외 1로 채워짐]
+
+dp를 생성할 때 모든 원소를 1로 채운다.
+"""
+
+# def climb_stairs_arr(n):    
+#     if n == 0:
+#         return 1
+#     if n == 1:
+#         return 1
+        
+#     dp = [1]*(n)        
+#     a = climb_stairs_arr(n-1)
+#     b = climb_stairs_arr(n-2)
+
+#     dp.extend(a + b)    
+
+#     return dp[n]
+
+# result_arr = []
+# result_arr = climb_stairs_arr(2)
+
+# print(result_arr)
+
 
 # 테스트 케이스
 if __name__ == "__main__":
