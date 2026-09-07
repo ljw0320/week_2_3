@@ -143,13 +143,34 @@ def make_change_greedy_2(change, coins):
             break           
 
     return total_coins, result
+
+# 방법 3 - 몫,나머지 연산으로 풀어보기
+# 입력 값을 동전으로 나눈 몫 => 총 동전 갯수에 더함
+# 나머지 => 새로운 입력 값이 됨
+
+def make_change_greedy_3(change, coins):
+    total_coins = 0
+    result = {}
+
+    temp_change = change
+
+    for coin in coins:
+        q = temp_change // coin
+        remain = temp_change % coin 
+
+        if q > 0:
+            total_coins += q
+            temp_change = remain
+            result[coin] = result.get(coin, 0) + q
+
+    return total_coins, result
         
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
     change1 = 1260
     coins1 = [500, 100, 50, 10]
-    total, details = make_change_greedy_2(change1, coins1)
+    total, details = make_change_greedy_3(change1, coins1)
     
     print("=== 거스름돈 계산 ===")
     print(f"거슬러줄 금액: {change1}원")
@@ -161,7 +182,7 @@ if __name__ == "__main__":
     # 테스트 케이스 2
     change2 = 4570
     coins2 = [500, 100, 50, 10]
-    total, details = make_change_greedy_2(change2, coins2)
+    total, details = make_change_greedy_3(change2, coins2)
     
     print("=== 거스름돈 계산 ===")
     print(f"거슬러줄 금액: {change2}원")
@@ -173,7 +194,7 @@ if __name__ == "__main__":
     # 테스트 케이스 3
     change3 = 1000
     coins3 = [500, 100, 50, 10]
-    total, details = make_change_greedy_2(change3, coins3)
+    total, details = make_change_greedy_3(change3, coins3)
     
     print("=== 거스름돈 계산 ===")
     print(f"거슬러줄 금액: {change3}원")
