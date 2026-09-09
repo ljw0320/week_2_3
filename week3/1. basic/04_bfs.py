@@ -50,7 +50,7 @@ def bfs(graph, start):
     queue = deque()     
     visited_set = set()
 
-    # 방문한 정점 리스트와 큐에 넣기
+    # 방문한 정점 리스트와 큐, 해시집합에 넣기
     visited.append(start)
     queue.append(start)
     visited_set.add(start)
